@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>{{listing.title}}</h1>
+<h2>{{listing.price}}</h2>
+<h3>{{listing.description}}</h3>
+<h4>for more information, contact {{user.username}} </h4>
+
+<p>
+    <img src="{{ url_for('serve_image', listingid = listing.id) }}"/>
+</p>
+
+
+{% endblock %}

@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+<!-- Exports header and navbar from header.html 
+     or any file you want-->
+{% block title %}Page Not Found{% endblock %} 
+{% block content %} 
+
+  <h1>Oops! 404 error</h1> 
+  <a href={{url_for('index')}}><p>Click Here</a>To go to back to the Initial greeting page</p> 
+  {% endblock %} 
