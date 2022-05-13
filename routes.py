@@ -41,6 +41,11 @@ def register():
     print(user)
     flash("you are now a registered user")
     return redirect(url_for('login'))
+  #does this work
+  else:  
+    for field in form:
+      for error in field.errors:
+        flash(error)
   return render_template("register.html", title = "Register", form=form)
 
 

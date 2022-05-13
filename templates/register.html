@@ -1,33 +1,30 @@
 {% extends "base.html" %}
 
-{% block content %}<center>
-	<h1 style="color:rgb(255, 0, 0)">Register</h1>
-    <p>Already a member? <a href="{{ url_for('login') }}">Click to login!</a></p>
+{% block content %}
+
+	<h1 class="text-center text-primary display-4">Register</h1>
+    <p class="text-center">Already a member? <a href="{{ url_for('login') }}">Click to login!</a></p>
+
+
     <form action="" method="post" novalidate>
         {{ form.hidden_tag() }}
-        <p>
+        
+
+        <div class="form-group text-center">
             {{ form.email.label }}<br>
             {{ form.email(size=32) }}<br>
-            {% for error in form.email.errors %}
-            <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
-        </p>
-        <p>
+        
             {{ form.password.label }}<br>
             {{ form.password(size=32) }}<br>
-            {% for error in form.password.errors %}
-            <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
-        </p>
-        <p>
+
             {{ form.repeat.label }}<br>
             {{ form.repeat(size=32) }}<br>
-            {% for error in form.repeat.errors %}
-            <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
-        </p>
-        <p>{{ form.submit() }}</p>
+
+        <button type="submit" class="btn btn-primary">
+            Submit
+        </button>
+        </div>
+
     </form>
-</center>
     
 {% endblock %}
