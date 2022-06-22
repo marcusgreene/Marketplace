@@ -20,7 +20,6 @@ login.login_view = 'login'
 def not_found(e):
     return render_template("404.html")
 
-
 from routes import *
 from models import *
 

@@ -7,21 +7,28 @@
 
 
     <form action="" method="post" novalidate>
-        {{ form.hidden_tag() }}
         
 
         <div class="form-group text-center">
-            {{ form.email.label }}<br>
-            {{ form.email(size=32) }}<br>
+            <span class="row justify-content-center">
+              <div class="form-floating mb-3 col-4">
+                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" name="emailform">
+                <label for="floatingInput">Email address</label>
+              </div>
+            </span>
         
-            {{ form.password.label }}<br>
-            {{ form.password(size=32) }}<br>
-
-            {{ form.repeat.label }}<br>
-            {{ form.repeat(size=32) }}<br>
+              <div class="form-floating mb-3">
+                <input type="password" class="form-control" id="floatingInput" placeholder="Password" name="password">
+                <label for="floatingInput">Password</label>
+              </div>
+              
+              <div class="form-floating mb-3 row-4">
+                <input type="password" class="form-control" id="floatingInput" placeholder="Repeat Password" name="repeat">
+                <label for="floatingInput">Repeat Password</label>
+              </div>
 
         <button type="submit" class="btn btn-primary">
-            Submit
+            Create Account
         </button>
         </div>
 
