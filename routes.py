@@ -32,24 +32,27 @@ def login():
 def register():
   if current_user.is_authenticated:
     return redirect(url_for('index'))
-  #form = Signupform()
-  #if form.validate_on_submit():
-  if request.method == "POST":
-    user = User(username = request.form["emailform"])
-    user.set_password(request.form["password"])
-    #user = User(username = form.email.data)
-    #user.set_password(form.password.data)
-    db.session.add(user)
-    db.session.commit()
+  form = Signupform()
+  if form.validate_on_submit():
+    user = User.query.filter_by(username = form.email.data).first()
     print(user)
-    flash("you are now a registered user")
-    return redirect(url_for('login'))
+    if user is not None:
+      flash("An account with this email already exists")
+      render_template('register.html', title="Register", form=form)
+    else:
+      user = User(username = form.email.data)
+      user.set_password(form.password.data)
+      db.session.add(user)
+      db.session.commit()
+      print(user)
+      flash("you are now a registered user")
+      return redirect(url_for('login'))
   #does this work
   """else:  
     for field in form:
       for error in field.errors:
         flash(error)"""
-  return render_template("register.html", title = "Register")
+  return render_template("register.html", title = "Register", form=form)
 
 
 @app.route('/logout')

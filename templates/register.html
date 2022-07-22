@@ -1,31 +1,45 @@
 {% extends "base.html" %}
 
 {% block content %}
-
+<span class="text-center">
 	<h1 class="text-center text-primary display-4">Register</h1>
     <p class="text-center">Already a member? <a href="{{ url_for('login') }}">Click to login!</a></p>
 
 
     <form action="" method="post" novalidate>
-        
+      {{ form.hidden_tag() }}
+      <p>
+        {{ form.email.label }}<br>
+        {{ form.email(size=45, placeholder=" Name@example.com") }}<br>
+        {% for error in form.email.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+    </p>
+    <p>
+      {{ form.password.label }}<br>
+      {{ form.password(size=45, placeholder=" Password") }}<br>
+      {{ form.repeat.label }}<br>
+      {{ form.repeat(size=45, placeholder=" Repeat Password")}}
+    </p>
 
-        <div class="form-group text-center">
-            <span class="row justify-content-center">
-              <div class="form-floating mb-3 col-4">
-                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" name="emailform">
-                <label for="floatingInput">Email address</label>
-              </div>
-            </span>
-        
-              <div class="form-floating mb-3">
-                <input type="password" class="form-control" id="floatingInput" placeholder="Password" name="password">
-                <label for="floatingInput">Password</label>
-              </div>
-              
-              <div class="form-floating mb-3 row-4">
-                <input type="password" class="form-control" id="floatingInput" placeholder="Repeat Password" name="repeat">
-                <label for="floatingInput">Repeat Password</label>
-              </div>
+    {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            {% for message in messages %}
+            <div class="container">
+                <div class="row">
+                    <span class="col">
+                        <div class="alert alert-danger" role="alert">
+                            {{message}}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                        </div>
+                    </span>
+                </div>
+            </div>
+            
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
 
         <button type="submit" class="btn btn-primary">
             Create Account
@@ -33,5 +47,6 @@
         </div>
 
     </form>
+  </span> 
     
 {% endblock %}
