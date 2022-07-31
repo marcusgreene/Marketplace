@@ -35,7 +35,6 @@ def register():
   form = Signupform()
   if form.validate_on_submit():
     user = User.query.filter_by(username = form.email.data).first()
-    print(user)
     if user is not None:
       flash("An account with this email already exists")
       render_template('register.html', title="Register", form=form)
@@ -44,10 +43,8 @@ def register():
       user.set_password(form.password.data)
       db.session.add(user)
       db.session.commit()
-      print(user)
       flash("you are now a registered user")
       return redirect(url_for('login'))
-  #does this work
   """else:  
     for field in form:
       for error in field.errors:

@@ -2,13 +2,15 @@
 
 {% block content %}
 
-<center> <h1>My Account</h1></center> 
+<span class="text-center"> 
+<h1 class="text-primary display-4 py-5">My Account</h1>
 
-<h5 style="text-align: left;">Your Listings</h5>
+<h5>Your Listings</h5>
 {% for listing in listings %}
 <a href="/listings/{{listing.id}}"><p>{{listing.title}}</p></a>
 {% endfor %}
 
+<h3 class = "text-primary display-4">Create Listing</h3>
 <form action="" method='POST' enctype="multipart/form-data" novalidate>
 
     {{ form.hidden_tag() }}
@@ -40,5 +42,6 @@
         {{ form.submit }}
     </p>
 </form>
+</span>
 
 {% endblock %}
