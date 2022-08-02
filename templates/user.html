@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1 class="text-center display-4">Listings</h1>
+
+    <div class="row justify-content-center py-5">
+        {% for listing in listings %}
+        <div class="card col-8 col-md-3 justify-content-center mx-3 my-2">
+            <img src="{{ url_for('serve_image', listingid = listing.id) }}" alt="{{listing.title}}">
+            <a href="/listings/{{listing.id}}"><p>{{listing.title}}</p> </a>
+        </div>
+        {% endfor %}
+        
+    </div>
+
+
+
+{% endblock %}

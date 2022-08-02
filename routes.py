@@ -77,11 +77,14 @@ def my_account():
     flash("listing created")
   return render_template('selling.html', title = "My Account", form=form, listings = listings)
 
+@app.route('/listings/user/<userid>')
+def user(userid):
+  listings = Listing.query.filter_by(id=userid)
+  return render_template("user.html",listings=listings, title = "Listings", _external=True, _scheme = "https")
 
 @app.route("/")
 def index():
     listings = Listing.query.all()
-    print(listings)
     return render_template("listings.html", listings = listings, title="Listings", _external=True, _scheme="https")
 
 @app.route("/listings/<listingid>")

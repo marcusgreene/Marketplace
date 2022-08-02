@@ -6,9 +6,8 @@ import email_validator
 class Signupform(FlaskForm):
     email = StringField(label = "Email", validators= [DataRequired(), Email()])
     password = PasswordField(label = "Password", validators = [DataRequired()])
-    repeat = PasswordField(label = "repeat password", validators = [DataRequired(), EqualTo('password')])
+    repeat = PasswordField(label = "Repeat Password", validators = [DataRequired(), EqualTo('password')])
     submit = SubmitField("register")
-
 
 class Loginform(FlaskForm):
     email = StringField(label = "Email", validators= [DataRequired()])
