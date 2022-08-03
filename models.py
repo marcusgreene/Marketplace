@@ -24,8 +24,7 @@ class Listing(db.Model):
     price = db.Column(db.String(30), index = True, unique=False)
     title = db.Column(db.String(50), index=True, unique=False)
     description = db.Column(db.String(500), unique= False, index=False)
-    image = db.Column(db.LargeBinary)
-    mimetype = db.Column(db.Text)
+    images = db.Column(db.Text)
 
     # allows each listing to be linked to a user who created it
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"))

@@ -1,5 +1,5 @@
 from app import app, db
-from flask import Flask, request, render_template, flash, redirect, url_for, Response
+from flask import Flask, request, render_template, flash, redirect, url_for, Response, send_from_directory
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, PasswordField
 from wtforms.validators import DataRequired, email_validator
@@ -7,6 +7,7 @@ from models import Listing, User
 from flask_login import current_user, login_user, logout_user, login_required
 from forms import Loginform, Signupform, Newlisting
 from werkzeug.utils import secure_filename
+import os
 
 @app.route('/login', methods=["GET", "POST"])
 def login():
@@ -64,13 +65,20 @@ def my_account():
   form = Newlisting()
   if form.validate_on_submit():
 
-    pic = request.files["pic"]
-    filename = secure_filename(pic.filename)
-    mimetype = pic.mimetype
+    if 'pic' not in request.files:
+            print('No file part')
+            return redirect(request.url)
+    file = request.files['pic']
+        # If the user does not select a file, the browser submits an
+        # empty file without a filename.
+    if file.filename == '':
+      print('No selected file')
+      return redirect(request.url)
+    if file:
+      filename = secure_filename(file.filename)
+      file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
 
-
-    listing = Listing(title = form.title.data, description = form.description.data, price = form.price.data, user_id=current_user.id, image = pic.read(), mimetype=mimetype)
-
+    listing = Listing(title = form.title.data, description = form.description.data, price = form.price.data, user_id=current_user.id, images=filename)
     db.session.add(listing)
     db.session.commit()
     print(listing, listing.title, listing.description, listing.price, listing.id)
@@ -91,13 +99,10 @@ def index():
 def listing(listingid):
   listing = Listing.query.filter_by(id=listingid).first()
   user = User.query.filter_by(id=listing.id).first()
-  developed = Response(listing.image, mimetype=listing.mimetype)
-  return render_template("listing.html", title=listing.title, listing=listing, user=user, image = developed)
+  return render_template("listing.html", title=listing.title, listing=listing, user=user)
 
+@app.route("/uploads/<filename>")
+def serve_image(filename):
+  return send_from_directory(app.config['UPLOAD_FOLDER'],filename)
 
-@app.route("/listings/<listingid>/image")
-def serve_image(listingid):
-  listing = listing = Listing.query.filter_by(id=listingid).first()
-  developed = Response(listing.image, mimetype=listing.mimetype)
-  return Response(listing.image, mimetype=listing.mimetype)
 
