@@ -5,21 +5,21 @@
 
 <div class="container">
 <span class="row">
-<div class="col">
+<div class="col-md-7">
       <!-- Carousel Component -->
-      <div id="carouselExampleControls" class="carousel slide w-50 mx-auto" data-ride="carousel" data-interval="false">
+      <div id="carouselExampleControls" class="carousel slide w-60 mx-auto" data-ride="carousel" data-interval="false">
         <div class="carousel-inner">
           <div class="carousel-item active">
-            <img src="{{ url_for('serve_image', filename=listing.images) }}" class="d-block w-100" alt="...">
+            <img src="{{ url_for('serve_image', filename=listing.images) }}" width = 600 height = 400 class="d-block w-100" alt="...">
           </div>
           <div class="carousel-item">
-            <img src="https://content.codecademy.com/courses/learn-bootstrap-4/adhoc/andy.png?_gl=1*1sesu3z*_ga*MTIwODExNDYyMC4xNjUyMjk3NTcy*_ga_3LRZM6TM9L*MTY1MjMxMTcwOS4zLjEuMTY1MjMxMzcxMy42MA.." class="d-block w-100" alt="...">
+            <img src="https://content.codecademy.com/courses/learn-bootstrap-4/adhoc/andy.png?_gl=1*1sesu3z*_ga*MTIwODExNDYyMC4xNjUyMjk3NTcy*_ga_3LRZM6TM9L*MTY1MjMxMTcwOS4zLjEuMTY1MjMxMzcxMy42MA.." width = 600 height = 400 class="d-block w-100" alt="...">
           </div>
           <div class="carousel-item">
-            <img src="https://content.codecademy.com/courses/learn-bootstrap-4/adhoc/angela.png?_gl=1*1sesu3z*_ga*MTIwODExNDYyMC4xNjUyMjk3NTcy*_ga_3LRZM6TM9L*MTY1MjMxMTcwOS4zLjEuMTY1MjMxMzcxMy42MA.." class="d-block w-100" alt="...">
+            <img src="https://content.codecademy.com/courses/learn-bootstrap-4/adhoc/angela.png?_gl=1*1sesu3z*_ga*MTIwODExNDYyMC4xNjUyMjk3NTcy*_ga_3LRZM6TM9L*MTY1MjMxMTcwOS4zLjEuMTY1MjMxMzcxMy42MA.." width = 600 height = 400 class="d-block w-100" alt="...">
           </div>
           <div class="carousel-item">
-            <img src="https://content.codecademy.com/courses/learn-bootstrap-4/adhoc/amie.png?_gl=1*1sesu3z*_ga*MTIwODExNDYyMC4xNjUyMjk3NTcy*_ga_3LRZM6TM9L*MTY1MjMxMTcwOS4zLjEuMTY1MjMxMzcxMy42MA.." class="d-block w-100" alt="...">
+            <img src="https://content.codecademy.com/courses/learn-bootstrap-4/adhoc/amie.png?_gl=1*1sesu3z*_ga*MTIwODExNDYyMC4xNjUyMjk3NTcy*_ga_3LRZM6TM9L*MTY1MjMxMTcwOS4zLjEuMTY1MjMxMzcxMy42MA.." width = 600 height = 400 class="d-block w-100" alt="...">
         </div>
         <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -33,11 +33,11 @@
       </div>
 </div>
 
-    <div class="col">
+    <div class="col-md-5">
         <h1 class="display-4">{{listing.title}}</h1>
         <h2>{{listing.price}}</h2>
         <h3>{{listing.description}}</h3>
-        <h4>for more information, contact {{user.username}} </h4>
+        <h4>For more information, contact {{user.username}} </h4>
         <a href="{{ url_for('user',userid=listing.id) }}">see more listings from this user here</a>
     </div>
 
